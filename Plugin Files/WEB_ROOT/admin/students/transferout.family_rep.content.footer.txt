@@ -1,0 +1,7 @@
+<script type="text/javascript">
+
+	$j(document).ready(function() {
+		console.log('Transfer Out page has been loaded.');
+	});
+
+</script>
