@@ -1,7 +1,21 @@
-<script type="text/javascript">
+~[if.~([STUDENTS]FAMILY_REP)=1]
+	<script type="text/javascript">
 
-	$j(document).ready(function() {
-		console.log('Transfer Out page has been loaded.');
-	});
+		$j(document).ready(function() {
+		    $j('input[name="DOTHISFOR"]').after($j('#family_rep').html());
+			$j('form').before('<div id="family_rep_warning" style="display:block;" class="feedback-alert">This student is identified as the <b>Family Rep</b> on the <em>Modify Info</em> page. If you are transferring this student out, and they have active household members on the <em>Family</em> page, you will want to identify a new household member as the <strong>Family Rep</strong>. Please uncheck the <strong>Family Rep</strong> box below as you transfer this student out.</div>');
+			$j('#family_rep').remove();
+		});
 
-</script>
+	</script>
+[else]
+    <script type="text/javascript">
+        $j(document).ready(function() {
+			$j('#family_rep').remove();
+		});
+    </script>
+[/if]
+
+<div style="display:none;" id="family_rep"> 
+	&nbsp;&nbsp;&nbsp;&nbsp;<b>~[text:psx.html.admin_students.modifydata.family_rep]</b>&nbsp;&nbsp;<input type="checkbox" name="[01]family_rep" value="1">
+</div>

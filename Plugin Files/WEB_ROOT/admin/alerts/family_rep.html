@@ -3,5 +3,37 @@
 		<div class="alertContent">
 			<p class="alertHeader">~(studentname)</p>
 			<p>Student is set as Family Rep on Modify Info page.</p>
+			<h2>Actively Enrolled Family/Household Members</h2>
+			<table class="linkDescList">
+				<thead>
+					<tr>
+						<th>Student</th>
+						<th style="text-align:center;">School</th>
+						<th style="text-align:center;">Grade</th>
+					</tr>
+				</thead>
+				<tbody>
+					~[tlist_sql;
+						select
+							s.lastfirst,
+							ss.abbreviation,
+							s.grade_level
+						from relationship r
+						join students s
+							on r.person_id = s.person_id
+						left join schools ss
+							on s.schoolid = ss.school_number
+						where r.relatedperson_id = ~(curstudid)
+							and s.enroll_status = 0
+						order by s.lastfirst
+					]
+					<tr>
+						<td>~(s.lastfirst)</td>
+						<td style="text-align:center;">~(ss.abbreviation)</td>
+						<td style="text-align:center;">~(s.grade_level)</td>
+					</tr>
+					[/tlist_sql]
+				</tbody>
+			</table>
 		</div>	
 </div>
