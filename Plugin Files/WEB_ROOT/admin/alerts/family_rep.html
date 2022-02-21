@@ -2,7 +2,7 @@
 		<img class="alertImage" src="/images/family_rep.svg" />
 		<div class="alertContent">
 			<p class="alertHeader">~(studentname)</p>
-			<p>Student is set as Family Rep on Modify Info page.</p>
+			<p>~(first_name) is set as a <b>Family Rep</b> on the <em>Modify Info</em> page.</p>
 			<h2>Active Household Members</h2>
 			<table class="linkDescList">
 				<thead>
@@ -15,17 +15,18 @@
 				<tbody>
 					~[tlist_sql;
 						select
-							s.lastfirst,
+							s2.lastfirst,
 							ss.abbreviation,
-							s.grade_level
-						from relationship r
-						join students s
-							on r.person_id = s.person_id
-						left join schools ss
-							on s.schoolid = ss.school_number
-						where r.relatedperson_id = ~(curstudid)
-							and s.enroll_status = 0
-						order by s.lastfirst
+							s2.grade_level
+						from students s1
+						join relationship r1
+							on s1.person_id = r1.relatedperson_id
+						join students s2
+							on r1.person_id = s2.person_id
+						join schools ss
+							on s2.schoolid = ss.school_number
+						where s1.id = ~(curstudid)
+						order by s2.lastfirst asc
 					]
 					<tr>
 						<td>~(s.lastfirst)</td>
