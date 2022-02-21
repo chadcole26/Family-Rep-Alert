@@ -2,8 +2,8 @@
 <plugin 
 	xmlns="http://plugin.powerschool.pearson.com" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	description="Michigan Special Education/504 Alerts with Accommodations" 
-	name="Michigan SpEd/504 Alerts" 
+	description="Admin alert for students who have family rep flag set on their record" 
+	name="Family Rep Alert" 
 	version="1.0" 
 	xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd">
 	<publisher name="Chad Cole">
