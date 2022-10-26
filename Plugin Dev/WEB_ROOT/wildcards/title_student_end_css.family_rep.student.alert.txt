@@ -1,0 +1,1 @@
+~[if.~([STUDENTS]FAMILY_REP)=1]&nbsp;<a title="Family Rep Alert" id="family_rep_alert" href="/admin/alerts/family_rep.html?frn=~(frn)" class="dialogM"><img src="/images/family_rep.svg" alt="Family Rep Alert" width="20" height="20" /></a>[/if]

@@ -1,0 +1,6 @@
+<!-- This script adds the Family Rep Alert setup page link to the Family Management area of the District Setup page -->
+<script type="text/javascript">
+  $j(document).ready( function() {
+    $j('#table_id_family_managment > tbody').append('<tr><td><a href="/admin/district/familyrepalert.html">Family Rep Alert</a></td><td>Display settings and options for the Family Rep alert from the PowerSource Community Exchange</td></tr>');
+  });
+</script>

@@ -1,4 +1,4 @@
-<div class="studentAlert" id="alert-family-rep~(studentfrn)">
+<div class="studentAlert" id="alert-family-rep~(studentfrn)" style="height:auto;width:auto;">
 		<img class="alertImage" src="/images/family_rep.svg" />
 		<div class="alertContent">
 			<p class="alertHeader">~(studentname)</p>
@@ -14,19 +14,20 @@
 				</thead>
 				<tbody>
 					~[tlist_sql;
-						select
+						SELECT
 							s2.lastfirst,
 							ss.abbreviation,
 							s2.grade_level
-						from students s1
-						join relationship r1
-							on s1.person_id = r1.relatedperson_id
-						join students s2
-							on r1.person_id = s2.person_id
-						join schools ss
-							on s2.schoolid = ss.school_number
-						where s1.id = ~(curstudid)
-						order by s2.lastfirst asc
+						FROM students s1
+						JOIN relationship r1
+							ON s1.person_id = r1.relatedperson_id
+						JOIN students s2
+							ON r1.person_id = s2.person_id
+							AND s2.enroll_status IN (-1,0)
+						JOIN schools ss
+							ON s2.schoolid = ss.school_number
+						WHERE s1.id = ~(curstudid)
+						ORDER BY s2.lastfirst asc
 					]
 					<tr>
 						<td>~(s.lastfirst)</td>

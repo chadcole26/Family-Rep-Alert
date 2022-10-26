@@ -1,0 +1,7 @@
+~[if.~([STUDENTS]FAMILY_REP)=1]
+	<script type="text/javascript">
+
+		$j('a[href*="transferout.html"]').append('<span style="color:red"> - <em>Student is identified as Family Rep on Modify Info page.</em></span>');
+
+	</script>
+[/if]

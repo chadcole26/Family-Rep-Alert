@@ -1,18 +1,25 @@
 ~[if#meetingFR.~[gpv:pagetype]=meeting]
 	<script language="javascript">
 
-		var alertRowsFR = [
+		console.log('Family Rep script is running.');
+		
+		var alertRowsFR = {"alertsFR": [
 				~[tlist_sql;
 					SELECT cc.id, s.dcid
 					FROM cc cc
 					JOIN students s ON s.id = cc.studentid
+					JOIN studentcorefields scf ON scf.studentsdcid = s.dcid
 					WHERE cc.sectionid = ~(gpv.sectionid;sqlText)
 					 AND TO_DATE('~(gpv.att_date;sqlText)','~[datetext:mmddyyyy]') BETWEEN cc.dateenrolled AND cc.dateleft-1
-					 AND s.family_rep = 1
+					 AND scf.family_rep = 1
 				]{"~(1)","~(2)"},[/tlist_sql]{"0","0"}
-		];
+		]};
+		
+		console.log('alertRowsFR = ' + alertRowsFR);
 	
-		alertRowsFR.pop();
+		//alertRowsFR.pop();
+		
+		//console.log('alertRowsFR = ' + alertRowsFR);
 		
 		$j.each(alertRowsFR, function(ccid, studcid) {
 		  $j('tr[id=ccid_' + ccid + '] td:eq(1)').append('&nbsp;<a href="/teachers/alerts/family_rep.html?frn=001'+ studcid +'" class="dialogM"  title="Family Rep Alert"><img src="/images/family_rep.svg" alt="Family Rep" width="30" height="20" style="vertical-align: text-bottom;"></a>');

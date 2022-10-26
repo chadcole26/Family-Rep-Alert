@@ -1,0 +1,41 @@
+<div class="studentAlert" id="alert-family-rep~(studentfrn)" style="height:auto;width:auto;">
+		<img class="alertImage" src="/images/family_rep.svg" />
+		<div class="alertContent">
+			<p class="alertHeader">~(studentname)</p>
+			<p>~(first_name) is set as a <b>Family Rep</b>. This information is maintained by your school or district administrator.</p>
+			<h2>Active Household Members</h2>
+			<table class="linkDescList">
+				<thead>
+					<tr>
+						<th>Student</th>
+						<th style="text-align:center;">School</th>
+						<th style="text-align:center;">Grade</th>
+					</tr>
+				</thead>
+				<tbody>
+					~[tlist_sql;
+						SELECT
+							s2.lastfirst,
+							ss.abbreviation,
+							s2.grade_level
+						FROM students s1
+						JOIN relationship r1
+							ON s1.person_id = r1.relatedperson_id
+						JOIN students s2
+							ON r1.person_id = s2.person_id
+							AND s2.enroll_status IN (-1,0)
+						JOIN schools ss
+							ON s2.schoolid = ss.school_number
+						WHERE s1.id = ~(curstudid)
+						ORDER BY s2.lastfirst asc
+					]
+					<tr>
+						<td>~(s.lastfirst)</td>
+						<td style="text-align:center;">~(ss.abbreviation)</td>
+						<td style="text-align:center;">~(s.grade_level)</td>
+					</tr>
+					[/tlist_sql]
+				</tbody>
+			</table>
+		</div>	
+</div>

@@ -2,7 +2,7 @@
 <plugin 
 	xmlns="http://plugin.powerschool.pearson.com" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	description="Alert for students who have family rep flag set on their record" 
+	description="Alert for students with family rep flag set" 
 	name="Family Rep Alert" 
 	version="1.1" 
 	xsi:schemaLocation="http://plugin.powerschool.pearson.com plugin.xsd">
